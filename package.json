@@ -6,6 +6,7 @@
   "devDependencies": {
     "angular": "1.4.4",
     "angular-animate": "1.4.4",
+    "angular-route": "1.4.4",
     "angular-ui-bootstrap": "0.13.3",
     "bootstrap-sass": "3.3.5",
     "grunt": "^0.4.5",
