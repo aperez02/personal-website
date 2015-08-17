@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		connect: {
-			server: {
+			connect: {
 				options: {
 					port: 3000,
 					hostname: 'localhost',
@@ -19,9 +19,25 @@ module.exports = function (grunt) {
 				files: 'sass/main.scss',
 				tasks: 'sass:main'
 			},
+			jsDev: {
+				files: 'javascript/*.js',
+				tasks: 'jshint:dev'
+			},
 			other: {
-	      		files: '*.html', 
+	      		files: ['*.html', 'partials/*.html'] 
 	      	}
+		},
+		jshint: {
+			config: {
+				files: {
+					src: ['Gruntfile.js', 'package.json']
+				}
+			},
+			dev: {
+				files: {
+					src: 'javascript/*.js'
+				}
+			}
 		},
 		sass: {
 			main: {
@@ -35,6 +51,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 
-	grunt.registerTask('default', ['sass', 'connect', 'watch']);
+	grunt.registerTask('dev', ['sass', 'jshint' ,'connect', 'watch']);
+
+	grunt.registerTask('default', ['dev']);
 };
