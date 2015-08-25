@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>About me</title>
+	<title ng-bind="page.title"></title>
 	
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
@@ -15,7 +15,7 @@
 		<nav role="navigation" class="navbar navbar-default" ng-controller="navController">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="#/About" class="navbar-brand">Alan</a>
+					<a href="#" class="navbar-brand">Alan</a>
 					<button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed" aria-controls="main-navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
@@ -26,11 +26,10 @@
 				<div class="collapse navbar-collapse" id="main-navbar-collapse" collapse="isCollapsed">
 					<ul class="nav navbar-nav">
 
-						<li ng-class="{active: isActive('/About')}"><a href="#/About" ng-click="itemSelected()">About me</a></li>
-						<li ng-class="{active: isActive('/Projects')}"><a href="#/Projects" ng-click="itemSelected()">Projects</a></li>
-						<li ng-class="{active: isActive('/Career')}"><a href="#/Career" ng-click="itemSelected()">Career map</a></li>
-						<li ng-class="{active: isActive('/Resume')}"><a href="#/Resume" ng-click="itemSelected()">Resume</a></li>
-						<li ng-class="{active: isActive('/Contact')}"><a href="#/Contact" ng-click="itemSelected()">Contact me</a></li>
+						<li ng-class="{active: isActive('/', true)}"><a href="#/" ng-click="itemSelected()">Home</a></li>
+						<li ng-class="{active: isActive('/About', false)}"><a href="#/About" ng-click="itemSelected()">About</a></li>
+						<li ng-class="{active: isActive('/Projects', false)}"><a href="#/Projects" ng-click="itemSelected()">Projects</a></li>
+						<li ng-class="{active: isActive('/Contact', false)}"><a href="#/Contact" ng-click="itemSelected()">Contact</a></li>
 					
 					</ul>
 				</div>
@@ -39,7 +38,6 @@
 	</header>
 	
 	<main role="main" id="content" ng-view>
-		
 	</main>
 
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
