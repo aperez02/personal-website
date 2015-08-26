@@ -15,25 +15,23 @@ app.config(function ($routeProvider) {
         templateUrl: 'partials/Projects.html',
         controller: 'projectController'
       }).
+      when('/Projects/:id', {
+        title: 'Project',
+        templateUrl: 'partials/Project-detail.html',
+        controller: 'projectDetailController'
+      }).
       when('/Contact', {
       	title: 'Contact',
-        templateUrl: 'partials/Contact.html'
+        templateUrl: 'partials/Contact.html',
+        controller: 'contactController'
       }).
       otherwise({
         redirectTo: '/'
       });
 });
 
-app.service('projectService', function () {
-  
-  function constructProject(name, description)
-  {
-    return {
-      "name": name,
-      "description": description
-    };
-  }
-
+app.service('projectService', function ($filter) {
+  var id = 0;
   var projects = [
     constructProject("CaseAide", "A mobile assistant for social workers"),
     constructProject("Red Folder", "Initiative designed to assist students in distress"),
@@ -42,7 +40,29 @@ app.service('projectService', function () {
     constructProject("Firefighting robot", "A robot who looks for and estinguish fires.")
   ];
 
-  this.all = projects;
+  function generateId()
+  {
+    return id++;
+  }
+
+  function constructProject(name, description)
+  {
+    return {
+      "id": generateId(),
+      "name": name,
+      "description": description
+    };
+  }
+
+  this.all = function allProjects()
+  {
+    return projects;
+  };
+
+  this.get = function (id)
+  {
+    return $filter('filter')(projects, function (d) {return d.id === id;})[0];
+  };
 
 });
 
@@ -83,19 +103,36 @@ app.controller('projectController', function ($scope, projectService) {
   console.log("project controller loaded");
 
   // two column data that means I need array with arrays in chunks [[chunk1], [chunck2]] split the data which looks like this [data1, data2]
-  function partitionProjects(projs, size)
+  function partitionData(data, size)
   {
     var partitionedData = [];
-    for (var i = 0; i < projs.length; i = i + size)
+    for (var i = 0; i < data.length; i = i + size)
     {
       // slice data from (i to i+size) without going over size of array
-      var limit = Math.min(i+size, projs.length);
-      partitionedData.push(projs.slice(i, limit));
+      var limit = Math.min(i+size, data.length);
+      partitionedData.push(data.slice(i, limit));
     }
     return partitionedData;
   }
 
-  $scope.projects = projectService;
-  $scope.partitionedProjects = partitionProjects($scope.projects.all, 2);
+  $scope.projects = projectService.all();
+  $scope.partitionedProjects = partitionData($scope.projects, 2);
 
+});
+
+app.controller('projectDetailController', function ($scope, $routeParams, projectService) {
+  $scope.selectedId = parseInt($routeParams.id);
+  $scope.selectedProject = projectService.get($scope.selectedId);
+
+  console.log("project detail loaded");
+});
+
+app.controller('contactController', function ($scope) {
+  console.log("contact controller running");
+
+  $scope.send = function () {
+    console.log("message = ", $scope.message);
+    console.log("Name = ", $scope.name);
+    console.log("email = ", $scope.email);
+  };
 });

@@ -1,8 +1,13 @@
 <div class="container">
 	<div class="row" ng-repeat="projRow in partitionedProjects">
 		<div class="col-md-6" ng-repeat="proj in projRow">
-				<h3>{{proj.name}}</h3>
-				<p>{{proj.description}}</p>
+			<a href="#/Projects/{{proj.id}}">
+				<div>
+					<h3>{{proj.name}}</h3>
+					<p>{{proj.description}}</p>
+				</div>
+			</a>
+				
 		</div>
 	</div>
 </div>
