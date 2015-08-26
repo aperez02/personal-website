@@ -1,4 +1,4 @@
-var app = angular.module('website-me', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('website-me', ['ngRoute', 'ui.bootstrap']);
 
 app.config(function ($routeProvider) {
 	$routeProvider.
@@ -12,7 +12,8 @@ app.config(function ($routeProvider) {
       }).
       when('/Projects', {
       	title: 'Projects',
-        templateUrl: 'partials/Projects.html'
+        templateUrl: 'partials/Projects.html',
+        controller: 'projectController'
       }).
       when('/Contact', {
       	title: 'Contact',
@@ -21,6 +22,28 @@ app.config(function ($routeProvider) {
       otherwise({
         redirectTo: '/'
       });
+});
+
+app.service('projectService', function () {
+  
+  function constructProject(name, description)
+  {
+    return {
+      "name": name,
+      "description": description
+    };
+  }
+
+  var projects = [
+    constructProject("CaseAide", "A mobile assistant for social workers"),
+    constructProject("Red Folder", "Initiative designed to assist students in distress"),
+    constructProject("Student Advising", "A mobile application built to assist students in planning future at CSUSB."),
+    constructProject("Yeti-Vision", "An animatronic robot that utilizes machine learning to improve user interaction."),
+    constructProject("Firefighting robot", "A robot who looks for and estinguish fires.")
+  ];
+
+  this.all = projects;
+
 });
 
 app.run(function($rootScope) {
@@ -53,4 +76,26 @@ app.controller('navController', function ($scope, $location) {
 	$scope.itemSelected = function () {
 		$scope.isCollapsed = true;
 	};
+});
+
+
+app.controller('projectController', function ($scope, projectService) {
+  console.log("project controller loaded");
+
+  // two column data that means I need array with arrays in chunks [[chunk1], [chunck2]] split the data which looks like this [data1, data2]
+  function partitionProjects(projs, size)
+  {
+    var partitionedData = [];
+    for (var i = 0; i < projs.length; i = i + size)
+    {
+      // slice data from (i to i+size) without going over size of array
+      var limit = Math.min(i+size, projs.length);
+      partitionedData.push(projs.slice(i, limit));
+    }
+    return partitionedData;
+  }
+
+  $scope.projects = projectService;
+  $scope.partitionedProjects = partitionProjects($scope.projects.all, 2);
+
 });
