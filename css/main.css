@@ -3965,7 +3965,7 @@ tbody.collapse.in {
       background-color: transparent; }
   .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #555;
-    background-color: #eeeeee; }
+    background-color: #ECEFF1; }
   .navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
     color: #ccc;
     background-color: transparent; }
@@ -3979,7 +3979,7 @@ tbody.collapse.in {
   .navbar-default .navbar-form {
     border-color: #eeeeee; }
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #eeeeee;
+    background-color: #ECEFF1;
     color: #555; }
   @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -3989,7 +3989,7 @@ tbody.collapse.in {
         background-color: transparent; }
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
       color: #555;
-      background-color: #eeeeee; }
+      background-color: #ECEFF1; }
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
       color: #ccc;
       background-color: transparent; } }
@@ -4503,7 +4503,8 @@ a.thumbnail.active {
   padding-left: 10px; }
 
 .media-left,
-.media > .pull-left {
+.media > .pull-left,
+body a.card .media > img {
   padding-right: 10px; }
 
 .media-left,
@@ -5585,7 +5586,7 @@ button.close {
 .clearfix:after {
   clear: both; }
 
-.center-block, #introduction, #project-spotlight .project {
+.center-block, body #content, body #project-spotlight .project {
   display: block;
   margin-left: auto;
   margin-right: auto; }
@@ -5593,7 +5594,7 @@ button.close {
 .pull-right {
   float: right !important; }
 
-.pull-left {
+.pull-left, body a.card img {
   float: left !important; }
 
 .hide {
@@ -5796,29 +5797,37 @@ button.close {
   .hidden-print {
     display: none !important; } }
 body {
-  background-color: #FFF;
-  color: #000; }
+  background-color: #E0E0E0;
+  color: #616161; }
+  body .navbar {
+    border: 0px; }
   body h1 {
     font-size: 30px; }
-
-#introduction {
-  background-color: #eee;
-  padding: 20px 40px 20px 40px; }
-
-#project-spotlight .project {
-  background-color: red;
-  margin: 10px 20px 10px 20px;
-  height: 175px; }
-
-#caseaide {
-  background-image: url("../img/projects/caseaide-bg.png");
-  -webkit-background-size: cover;
-  /* For WebKit*/
-  -moz-background-size: cover;
-  /* Mozilla*/
-  -o-background-size: cover;
-  /* Opera*/
-  background-size: cover;
-  /* Generic*/ }
+  body #content {
+    max-width: 1200px; }
+  body .pg-header {
+    padding: 30px 40px 30px 40px; }
+  body #welcome-header {
+    background-color: #2196F3;
+    color: #FFFFFF; }
+  body #about-header {
+    background-color: #009688;
+    color: #FFFFFF; }
+  body #project-spotlight .project {
+    background-color: red;
+    margin: 10px 20px 10px 20px;
+    height: 175px; }
+  body a.card {
+    display: block;
+    background-color: #FFFFFF;
+    padding: 25px;
+    margin: 10px 20px 10px 20px;
+    text-decoration: none;
+    color: #616161; }
+  body a.card:hover {
+    background-color: #f2f2f2; }
+  body a.card img {
+    width: 25px;
+    height: 25px; }
 
 /*# sourceMappingURL=main.css.map */

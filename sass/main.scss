@@ -1,38 +1,76 @@
-// Bootstrap variable configuration 
+$neutral: #E0E0E0;
+$dark: #616161;
+$positive: #2196F3;
+$blue-grey: #607D8B;
+$serious: #009688;
+$calm: #43A047;
+$light: #FFFFFF;
 
+// Bootstrap variable configuration 
 $navbar-default-bg: #fff;
 $navbar-margin-bottom: 0;
+$navbar-default-link-active-bg: #ECEFF1;
+
 
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 body {
-	background-color: #FFF;
-	color: #000;
+	background-color: $neutral;
+	color: $dark;
+
+	.navbar {
+		border: 0px;
+	}
 
 	h1 {
 		font-size: 30px;
 	}
-}
 
-#introduction {
-	@extend .center-block;
-	background-color: #eee;
-	padding: 20px 40px 20px 40px;
-}
-
-#project-spotlight {
-	.project {
+	#content {
+		max-width: 1200px;
 		@extend .center-block;
-		background-color: red;
+	}
+	
+	.pg-header {
+		padding: 30px 40px 30px 40px;
+	}
+
+	#welcome-header {
+		background-color: $positive;
+		color: $light;
+	}
+
+	#about-header {
+		background-color: $serious;
+		color: $light;
+	}
+
+	#project-spotlight {
+		.project {
+			@extend .center-block;
+			background-color: red;
+			margin: 10px 20px 10px 20px;
+			height: 175px;
+		}
+	}
+
+	a.card {
+		display: block;
+		background-color: $light;
+		padding: 25px;
 		margin: 10px 20px 10px 20px;
-		height: 175px;
+
+		text-decoration: none;
+		color: $dark;
+	}
+
+	a.card:hover {
+		background-color: darken($light, 5%);
+	}
+	a.card img {
+		@extend .pull-left;
+		width: 25px;
+		height: 25px;
 	}
 }
 
-#caseaide {
-	background-image: url("../img/projects/caseaide-bg.png");
-	-webkit-background-size: cover; /* For WebKit*/
-    -moz-background-size: cover;    /* Mozilla*/
-    -o-background-size: cover;      /* Opera*/
-    background-size: cover;         /* Generic*/
-}

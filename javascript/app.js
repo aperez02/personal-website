@@ -4,7 +4,8 @@ app.config(function ($routeProvider) {
 	$routeProvider.
       when('/', {
       	title: 'Home',
-        templateUrl: 'partials/Home.html'
+        templateUrl: 'partials/Home.html',
+        controller: 'homeController'
       }).
       when('/About', {
         title: 'About',
@@ -54,7 +55,12 @@ app.service('projectService', function ($filter) {
     };
   }
 
-  this.all = function allProjects()
+  this.spotlight = function ()
+  {
+    return [projects[0], projects[1]];
+  };
+
+  this.all = function ()
   {
     return projects;
   };
@@ -98,10 +104,7 @@ app.controller('navController', function ($scope, $location) {
 	};
 });
 
-
-app.controller('projectController', function ($scope, projectService) {
-  console.log("project controller loaded");
-
+app.controller('homeController', function ($scope, projectService) {
   // two column data that means I need array with arrays in chunks [[chunk1], [chunck2]] split the data which looks like this [data1, data2]
   function partitionData(data, size)
   {
@@ -115,8 +118,16 @@ app.controller('projectController', function ($scope, projectService) {
     return partitionedData;
   }
 
-  $scope.projects = projectService.all();
+  $scope.projects = projectService.spotlight();
   $scope.partitionedProjects = partitionData($scope.projects, 2);
+
+});
+
+
+app.controller('projectController', function ($scope, projectService) {
+  console.log("project controller loaded");
+
+  $scope.projects = projectService.all();
 
 });
 

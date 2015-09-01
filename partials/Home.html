@@ -1,10 +1,22 @@
-<section>
-	<h1>Welcome</h1>
-	<img src="img/alan.png" alt="photo of alan" class="img-circle" width="90px" height="90px">
-	<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+<section class="pg-header" id="welcome-header">
+	<h1>Welcome,</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </section>
+<h2>Recent Projects</h2>
+<div class="container">
+	<div class="row" ng-repeat="projRow in partitionedProjects">
+		<div class="col-md-6" ng-repeat="proj in projRow">
+			<a href="#/Projects/{{proj.id}}" class="card">
+				<img src="img/alan.png">
+				<h3>{{proj.name}}</h3>
+				<p>{{proj.description}}</p>
+			</a>
+				
+		</div>
+	</div>
+</div>
